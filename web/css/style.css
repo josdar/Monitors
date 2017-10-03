@@ -1,0 +1,118 @@
+.grafico{
+/*    margin-left: 20%;*/
+    margin-right: 5%;
+    padding: 3%;
+/*    border: lightgray 2px solid;*/
+/*    border-radius: 25px;*/
+    float: right;
+    width: 80%;
+}
+
+.barraHeader{
+    margin-bottom: 7%;
+}
+
+.tabla{
+/*    margin-left: 10%;*/
+    float: left;
+    width: 10%;
+    margin-left: 2%;
+}
+
+.piePagina{
+    height: 50px;
+    background: black;
+    margin-top: 5%;
+}
+
+.peligro{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 3%;
+}
+
+.tbs{
+    width: 100%;
+}
+
+#tablaTbs{
+    width: 100%;
+}
+
+td{
+    padding: 5px;
+}
+
+.headerT{
+    border: black 2px solid;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.filaT{
+    border: black 2px solid;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+#top{
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+#bottom{
+    width: 100%;
+}
+
+.tablaDetalles{
+    margin-left: 30%;
+/*    margin-right: 40%;*/
+/*    border: lightgray 2px solid;*/
+}
+
+.graficoSGA{
+    margin-left: 20%;
+    margin-right: 20%;   
+    margin-bottom: 5%;
+    padding: 3%;
+    border: lightgray 2px solid;
+    border-radius: 25px;
+}
+
+.barraHeaderSGA{
+    margin-bottom: 7%;
+}
+
+.tablaSGA{
+    margin-left: 10%;
+    margin-right: 10%;
+    border: lightgray 2px solid;
+}
+
+.piePaginaSGA{
+    height: 50px;
+    background: black;
+    margin-top: 5%;
+}
+
+.peligro{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 3%;
+}
+
+.botones{
+    width: 100%;
+}
+
+#btn1{
+    width: 30%;
+    height: 200px;
+    margin-right: 5%;
+    margin-left: 17%;
+}
+
+#btn2{
+    width: 30%;
+    height: 200px;
+}
