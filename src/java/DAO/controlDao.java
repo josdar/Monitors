@@ -39,7 +39,7 @@ public class controlDao {
                 + "    ORDER BY (A.NAME) ASC";
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@localhost:1521/XE");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@192.168.0.15:1521/XE");
             OracleStatement stmt = (OracleStatement) cn.createStatement();
             OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
 
@@ -72,7 +72,7 @@ public class controlDao {
         String sentencia = "select tablespace_name, table_name, num_rows, last_analyzed from all_tables where tablespace_name=" + "'" + nombreTs + "'";
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@localhost:1521/XE");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@192.168.0.15:1521/XE");
             OracleStatement stmt = (OracleStatement) cn.createStatement();
             OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
 
@@ -107,7 +107,7 @@ public class controlDao {
         String sentencia = "SELECT TABLESPACE_NAME, SEGMENT_NAME,(BYTES)/1024/1024 AS SIZE_IN_MB,SEGMENT_TYPE FROM DBA_SEGMENTS WHERE TABLESPACE_NAME=" + "'" + nameTs + "'";
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@localhost:1521/XE");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@192.168.0.15:1521/XE");
             OracleStatement stmt = (OracleStatement) cn.createStatement();
             OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
             while (rset.next()) {
@@ -148,7 +148,7 @@ public class controlDao {
                 + "    ORDER BY (A.NAME) ASC";
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@localhost:1521/XE");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@192.168.0.15:1521/XE");
             OracleStatement stmt = (OracleStatement) cn.createStatement();
             OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
 
@@ -194,7 +194,7 @@ public class controlDao {
                 + "    ORDER BY (A.NAME) ASC";
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@localhost:1521/XE");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@192.168.0.15:1521/XE");
             OracleStatement stmt = (OracleStatement) cn.createStatement();
             OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
 
@@ -240,7 +240,7 @@ public class controlDao {
                 + "    ORDER BY (A.NAME) ASC";
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@localhost:1521/XE");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@192.168.0.15:1521/XE");
             OracleStatement stmt = (OracleStatement) cn.createStatement();
             OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
 
