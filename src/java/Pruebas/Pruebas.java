@@ -1,15 +1,10 @@
 package Pruebas;
 
-import DAO.controlDao;
-import domain.Archivo;
-import domain.Dato;
-import domain.Segmento;
-import domain.Tablespace;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import oracle.jdbc.OracleResultSet;
+import oracle.jdbc.OracleStatement;
 
 /**
  *
@@ -17,39 +12,28 @@ import java.util.ArrayList;
  */
 public class Pruebas {
 
-    public static void main(String[] args) {
-        ArrayList<Segmento> aS = new ArrayList<>();
-        ArrayList<Dato> tdUSRS = new ArrayList<>();
-        ArrayList<Dato> tdMV = new ArrayList<>();
-        ArrayList<Tablespace> tbs = new ArrayList<>();
-        controlDao c = new controlDao();
-        Archivo a = new Archivo();
-        //tbs = c.listaTableSpaces();
-        //tdUSRS = c.listaDatos("USERS");
-        //tdMV = c.listaDatos("MOVILES");
-//        a.escribir(tdUSRS);
-//        a.escribir(tdMV);
-//        for(int i = 0; i < tdUSRS.size();i++){
-//            System.err.println("1) "+tdUSRS.get(i).toString());
-//        }
-//        for(int i = 0; i < tdMV.size();i++){
-//            System.err.println("1) "+tdMV.get(i).toString());
-//        }
-        //a.leer();
-        //aS=c.getSizeofTableSpace("USERS");
-        //a.escribir(aS);
-//        aS = a.leer();
-//        for (int i = 0; i < aS.size(); i++) {
-//            System.out.println(aS.get(i).toString());
-//        }
+    public static void main(String[] args) {        
+        Connection cn = null;
+        //https://community.oracle.com/thread/927598
+        String sentencia = "select * from t1";
+        try {
+            DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@192.168.0.15:1521/XE");
+            OracleStatement stmt = (OracleStatement) cn.createStatement();
+            OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
 
-//        System.out.println(c.contIndices(aS, "PRUEBAS"));
-//        System.out.println(c.contTablas(aS, "PRUEBAS"));
-//          System.out.println(24*c.getPromedioConsumo("PRUEBAS"));
-            //a.escribirHWM(80);
-            //System.out.println(a.leerHWM());
-            System.out.println(c.getPromedioConsumoHastaHWM("PRUEBAS"));
-            System.out.println(c.getPromedioConsumo("PRUEBAS"));
+            while (rset.next()) {
+                System.out.println(String.valueOf(rset.getInt("A"))+String.valueOf(rset.getInt("B"))+String.valueOf(rset.getInt("C")));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+            }
+        }
 
     }
 }
