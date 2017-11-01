@@ -7,7 +7,8 @@ function tablespaces() {
     $.ajax({
         url: 'conexionBase',
         data: {
-            accion: "tablespaces"
+            accion: "tablespaces",
+            IP: localStorage.getItem('IP')
         },
         error: function () { //si existe un error en la respuesta del ajax
         },
@@ -18,6 +19,23 @@ function tablespaces() {
         dataType: "json"
     });
 }
+
+//function setIp(){
+//    $.ajax({
+//        url:'conexionBase',
+//        data:{
+//          accion:"setIp",
+//          IP: localStorage.getItem('IP')
+//        },
+//        error: function () { //si existe un error en la respuesta del ajax
+//        },
+//        success: function (data) {
+//            tablespaces();
+//        },
+//        type: 'GET',
+//        dataType: "json"
+//    });
+//}
 
 function leerHWM() {
     $.ajax({

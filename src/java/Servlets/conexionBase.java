@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import domain.Archivo;
 import domain.Dato;
 import domain.Segmento;
+import domain.Servidor;
 import domain.Tablespace;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,18 +22,22 @@ public class conexionBase extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            
             Control c = new Control();
             Archivo a = new Archivo();
+            Servidor s;
             String json;
             int hwmArchivo;
             ArrayList<Tablespace> tbs = new ArrayList<>();
             ArrayList<Segmento> aS = new ArrayList<>();
+            ArrayList<Servidor> lServidores = new ArrayList<>();
             
             String accion = request.getParameter("accion");
             double diasTotal = 0.0;
             double diasHwm = 0.0;
             switch (accion) {
                 case "tablespaces":
+                    c.setIpServidor(request.getParameter("IP"));
                     tbs = c.listaTableSpaces();
                     json = new Gson().toJson(tbs);
                     out.print(json);
@@ -69,7 +74,22 @@ public class conexionBase extends HttpServlet {
                     json = new Gson().toJson(hwmInput);
                     out.print(json);
                     break;
-
+                case "guardarBase":
+                    s = new Servidor();
+                    s.setNombre(request.getParameter("nombre"));
+                    s.setIp(request.getParameter("ip"));
+                    a.guardarServidor(s);
+                    break;
+                case "getServidores":
+                    lServidores = a.leerServidores();
+                    json = new Gson().toJson(lServidores);
+                    out.print(json);
+                    break;
+//                case "setIp":
+//                    c.setIpServidor(request.getParameter("IP"));
+//                    json = new Gson().toJson(c.getIpServidor());
+//                    out.print(json);
+//                    break;
                 default:
                     out.print("E~No se indico la acción que se desea realizare");
                     break;

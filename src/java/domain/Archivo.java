@@ -28,7 +28,7 @@ public class Archivo {
 
         f = new File("./Respaldo_Monitor.txt");
 
-//Escritura
+        //Escritura
         try {
 
             FileWriter w = new FileWriter(f, true);
@@ -83,7 +83,7 @@ public class Archivo {
                 //System.out.println(p.toString());
                 Ls.add(s);
             }
-            
+
 //            for(int i = 0; i < Ls.size();i++){
 //                System.out.println(Ls.get(i).toString());
 //            }
@@ -104,13 +104,13 @@ public class Archivo {
         return Ls;
 
     }
-    
-     public void escribirHWM(int pHwm) {
+
+    public void escribirHWM(int pHwm) {
         File f;
 
         f = new File("./Respaldo_HWM.txt");
 
-//Escritura
+        //Escritura
         try {
 
             FileWriter w = new FileWriter(f);
@@ -120,7 +120,6 @@ public class Archivo {
             PrintWriter wr = new PrintWriter(bw);
             //wr.write(l.get(0).toString());
             wr.write(String.valueOf(pHwm));
-            
 
             //ahora cerramos los flujos de canales de datos, al cerrarlos el archivo quedará guardado con información escrita
             //de no hacerlo no se escribirá nada en el archivo
@@ -132,10 +131,10 @@ public class Archivo {
         };
 
     }
-    
+
     public int leerHWM() {
 
-        int hwm=0;
+        int hwm = 0;
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -150,10 +149,10 @@ public class Archivo {
             // Lectura del fichero
             String linea;
             while ((linea = br.readLine()) != null) {
-               //System.out.println(linea);
-               hwm= Integer.parseInt(linea);
+                //System.out.println(linea);
+                hwm = Integer.parseInt(linea);
             }
-            
+
 //            for(int i = 0; i < Ls.size();i++){
 //                System.out.println(Ls.get(i).toString());
 //            }
@@ -174,5 +173,66 @@ public class Archivo {
         return hwm;
 
     }
+    
+     public void guardarServidor(Servidor s) {
+        File f;
 
+        f = new File("./Servidores.txt");
+
+//Escritura
+        try {
+
+            FileWriter w = new FileWriter(f,true);
+
+            BufferedWriter bw = new BufferedWriter(w);
+
+            PrintWriter wr = new PrintWriter(bw);
+            wr.write(s.toString()+"\n");
+
+            //ahora cerramos los flujos de canales de datos, al cerrarlos el archivo quedará guardado con información escrita
+            //de no hacerlo no se escribirá nada en el archivo
+            wr.close();
+
+            bw.close();
+
+        } catch (IOException e) {
+        };
+
+    }
+
+     public ArrayList<Servidor> leerServidores() {
+
+        Servidor s;
+        ArrayList<Servidor> Ls = new ArrayList<>();
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+            archivo = new File("./Servidores.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                s = new Servidor();
+                String delimitadores = "[-{}=,;?!¡¿\'\"\\[\\]]+";
+                String[] palabrasSeparadas = linea.split(delimitadores);
+                s.setIp(palabrasSeparadas[0]);
+                s.setNombre(palabrasSeparadas[1]);
+                Ls.add(s);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return Ls;
+
+    }
 }

@@ -55,4 +55,12 @@ public class Control {
         return c.getPromedioConsumoHastaHWM(nombreTS);
     }
     
+    public String getIpServidor() {
+        return c.getIpServidor();
+    }
+
+    public void setIpServidor(String ipServidor) {
+        c.setIpServidor(ipServidor);
+    }
+    
 }
