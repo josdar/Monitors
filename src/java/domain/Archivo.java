@@ -21,12 +21,13 @@ import java.util.ArrayList;
 public class Archivo {
 
     public Archivo() {
+        
     }
 
-    public void escribir(ArrayList<Segmento> l) {
+    public void escribir(ArrayList<Segmento> l, String ip) {
         File f;
 
-        f = new File("./Respaldo_Monitor.txt");
+        f = new File("ArchivosMonitores/BD"+ip+".txt");
 
         //Escritura
         try {
@@ -53,7 +54,7 @@ public class Archivo {
 
     }
 
-    public ArrayList<Segmento> leer() {
+    public ArrayList<Segmento> leer(String ip) {
 
         Segmento s;
         ArrayList<Segmento> Ls = new ArrayList<>();
@@ -64,7 +65,7 @@ public class Archivo {
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File("./Respaldo_Monitor.txt");
+            archivo = new File("ArchivosMonitores/BD"+ip+".txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -108,7 +109,7 @@ public class Archivo {
     public void escribirHWM(int pHwm) {
         File f;
 
-        f = new File("./Respaldo_HWM.txt");
+        f = new File("ArchivosMonitores/Respaldo_HWM.txt");
 
         //Escritura
         try {
@@ -142,7 +143,7 @@ public class Archivo {
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File("./Respaldo_HWM.txt");
+            archivo = new File("ArchivosMonitores/Respaldo_HWM.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -177,7 +178,7 @@ public class Archivo {
      public void guardarServidor(Servidor s) {
         File f;
 
-        f = new File("./Servidores.txt");
+        f = new File("ArchivosMonitores/Servidores.txt");
 
 //Escritura
         try {
@@ -209,7 +210,7 @@ public class Archivo {
         BufferedReader br = null;
 
         try {
-            archivo = new File("./Servidores.txt");
+            archivo = new File("ArchivosMonitores/Servidores.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             String linea;

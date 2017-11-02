@@ -24,7 +24,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="Index.jsp">Seleccione el Monitor</a>
+                <a class="navbar-brand" href="registroBD.jsp">Seleccione el Monitor</a>
             </nav>
         </header>
         <div class="botones">

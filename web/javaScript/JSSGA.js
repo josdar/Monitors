@@ -6,9 +6,11 @@ $(document).ready(function () {
     setInterval(function () {
         //alert("HOLA");
         $.ajax({
-            url: 'ServletSGA',
+            url: 'conexionBase',
+            
             data: {
-                accion: "free"
+                accion: "free",
+                IP: localStorage.getItem('IP')
             },
             error: function () { //si existe un error en la respuesta del ajax
             },

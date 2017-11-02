@@ -20,23 +20,6 @@ function tablespaces() {
     });
 }
 
-//function setIp(){
-//    $.ajax({
-//        url:'conexionBase',
-//        data:{
-//          accion:"setIp",
-//          IP: localStorage.getItem('IP')
-//        },
-//        error: function () { //si existe un error en la respuesta del ajax
-//        },
-//        success: function (data) {
-//            tablespaces();
-//        },
-//        type: 'GET',
-//        dataType: "json"
-//    });
-//}
-
 function leerHWM() {
     $.ajax({
         url: 'conexionBase',
@@ -99,7 +82,9 @@ function getTablespace(nombre) {
         url: 'conexionBase',
         data: {
             accion: "buscarTableSpace",
+            IP: localStorage.getItem('IP'),
             tableSpace: nombre
+            
         },
         error: function () { //si existe un error en la respuesta del ajax
         },

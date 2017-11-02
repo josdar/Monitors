@@ -2,6 +2,7 @@ package Servlets;
 
 import Control.Control;
 import DAO.controlDao;
+import DAO.controlSGA;
 import com.google.gson.Gson;
 import domain.Archivo;
 import domain.Dato;
@@ -22,16 +23,18 @@ public class conexionBase extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            
+
             Control c = new Control();
             Archivo a = new Archivo();
+            controlSGA cSGA = new controlSGA();
             Servidor s;
             String json;
+            String ipServidor;
             int hwmArchivo;
             ArrayList<Tablespace> tbs = new ArrayList<>();
             ArrayList<Segmento> aS = new ArrayList<>();
             ArrayList<Servidor> lServidores = new ArrayList<>();
-            
+
             String accion = request.getParameter("accion");
             double diasTotal = 0.0;
             double diasHwm = 0.0;
@@ -46,12 +49,15 @@ public class conexionBase extends HttpServlet {
                 case "buscarTableSpace":
                     Tablespace t = new Tablespace();
                     tbs = c.listaTableSpaces();
+                    ipServidor = request.getParameter("IP");
+                    c.setIpServidor(ipServidor);
                     String tableSpace = request.getParameter("tableSpace");
                     for (int i = 0; i < tbs.size(); i++) {
                         if (tbs.get(i).getNombre().equals(tableSpace)) {
                             t = tbs.get(i);
-                            //aS = c.getSizeofTableSpace(request.getParameter("tableSpace"));
-                            //a.escribir(aS);
+
+//                            aS = c.getSizeofTableSpace(request.getParameter("tableSpace"));
+//                            a.escribir(aS,ipServidor);
                             i = tbs.size();
                         }
                     }
@@ -85,11 +91,14 @@ public class conexionBase extends HttpServlet {
                     json = new Gson().toJson(lServidores);
                     out.print(json);
                     break;
-//                case "setIp":
-//                    c.setIpServidor(request.getParameter("IP"));
-//                    json = new Gson().toJson(c.getIpServidor());
-//                    out.print(json);
-//                    break;
+                case "free":
+                    ipServidor = request.getParameter("IP");
+                    cSGA.freeSGA(ipServidor);
+                    cSGA.consultSharedPool(ipServidor);
+                    cSGA.usedSGA(ipServidor);
+                    json = new Gson().toJson(cSGA);
+                    out.print(json);
+                    break;
                 default:
                     out.print("E~No se indico la acción que se desea realizare");
                     break;

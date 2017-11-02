@@ -5,14 +5,12 @@ import domain.Dato;
 import domain.Memoria;
 import domain.Tablespace;
 import domain.Segmento;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import static javafx.beans.binding.Bindings.select;
 import oracle.jdbc.OracleResultSet;
 import oracle.jdbc.OracleStatement;
 
@@ -289,7 +287,7 @@ public class controlDao {
         int contIndex = 0;
         double memoriaLibre = 0.0;
         Archivo a = new Archivo();
-        l = a.leer();
+        l = a.leer(ipServidor);
         contIndex = contIndices(l, nombreTS);
         contTablas = contTablas(l, nombreTS);
         for (int i = 0; i < l.size(); i++) {
@@ -315,7 +313,7 @@ public class controlDao {
         int contIndex = 0;
         double memoriaTotal = 0.0;
         Archivo a = new Archivo();
-        l = a.leer();
+        l = a.leer(ipServidor);
         contIndex = contIndices(l, nombreTS);
         contTablas = contTablas(l, nombreTS);
         for (int i = 0; i < l.size(); i++) {
