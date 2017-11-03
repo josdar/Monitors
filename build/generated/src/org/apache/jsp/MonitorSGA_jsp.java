@@ -64,7 +64,7 @@ public final class MonitorSGA_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <button class=\"navbar-toggler navbar-toggler-right\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n");
       out.write("                    <span class=\"navbar-toggler-icon\"></span>\n");
       out.write("                </button>\n");
-      out.write("                <a class=\"navbar-brand\" href=\"#\">Monitor de Memoria SGA</a>\n");
+      out.write("                <a class=\"navbar-brand\" href=\"Index.jsp\">Monitor de Memoria SGA</a>\n");
       out.write("            </nav>\n");
       out.write("        </header>\n");
       out.write("        <div class=\"graficoSGA\">\n");
@@ -91,6 +91,11 @@ public final class MonitorSGA_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <tr>\n");
       out.write("                        <td>Shared Pool</td>\n");
       out.write("                        <td><label id=\"SharedPool\"></label></td>\n");
+      out.write("                    </tr>\n");
+      out.write("                    <tr>\n");
+      out.write("                        <td>HWM</td>\n");
+      out.write("                        <td><label id=\"HWM1\"><input onchange=\"\" type=\"text\" class=\"form-control\" id=\"HWM\" value=\"\"/></label></td>\n");
+      out.write("                        \n");
       out.write("                    </tr>\n");
       out.write("                </tbody>\n");
       out.write("            </table>\n");

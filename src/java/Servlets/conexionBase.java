@@ -4,6 +4,7 @@ import Control.Control;
 import DAO.controlDao;
 import DAO.controlSGA;
 import com.google.gson.Gson;
+import domain.Alerta;
 import domain.Archivo;
 import domain.Dato;
 import domain.Segmento;
@@ -34,7 +35,7 @@ public class conexionBase extends HttpServlet {
             ArrayList<Tablespace> tbs = new ArrayList<>();
             ArrayList<Segmento> aS = new ArrayList<>();
             ArrayList<Servidor> lServidores = new ArrayList<>();
-
+            ArrayList<Alerta> lAlertas = new ArrayList<>();
             String accion = request.getParameter("accion");
             double diasTotal = 0.0;
             double diasHwm = 0.0;
@@ -99,6 +100,24 @@ public class conexionBase extends HttpServlet {
                     json = new Gson().toJson(cSGA);
                     out.print(json);
                     break;
+                case "guardarAlerta":
+                    ipServidor = request.getParameter("IP");
+                    lAlertas = cSGA.usuariosSentencias(ipServidor);
+                    a.guardarAlerta(lAlertas, ipServidor);
+                   
+                    break;
+                case "getHWMSGA":
+                    hwmArchivo = a.leerHWMSGA();
+                    json = new Gson().toJson(hwmArchivo);
+                    out.print(json);
+                    break;
+                case "saveHWMSGA":
+                    String hwmInputSGA = String.valueOf(request.getParameter("hwmSGA"));
+                    a.escribirHWMSGA(Integer.parseInt(hwmInputSGA));
+                    json = new Gson().toJson(hwmInputSGA);
+                    out.print(json);
+                    break;    
+                  
                 default:
                     out.print("E~No se indico la acción que se desea realizare");
                     break;

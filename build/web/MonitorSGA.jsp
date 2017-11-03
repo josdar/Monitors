@@ -53,6 +53,11 @@
                         <td>Shared Pool</td>
                         <td><label id="SharedPool"></label></td>
                     </tr>
+                    <tr>
+                        <td>HWM</td>
+                        <td><label><input onchange="saveHWMSGA()" type="text" class="form-control" id="HWM" value=""/></label></td>
+                        
+                    </tr>
                 </tbody>
             </table>
         </div>

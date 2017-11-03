@@ -5,12 +5,14 @@
  */
 package DAO;
 
+import domain.Alerta;
 import domain.Dato;
 import domain.Memoria;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import oracle.jdbc.OracleResultSet;
 import oracle.jdbc.OracleStatement;
 
@@ -19,6 +21,7 @@ import oracle.jdbc.OracleStatement;
  * @author joset
  */
 public class controlSGA {
+
     Memoria m;
 
     public controlSGA() {
@@ -75,23 +78,15 @@ public class controlSGA {
 
     public void freeSGA(String ip) {
         Connection cn = null;
-        String sentencia ="SELECT SUM(BYTES)/1024/1024 as MB FROM v$sgastat WHERE NAME = 'free memory'";
+        String sentencia = "SELECT SUM(BYTES)/1024/1024 as MB FROM v$sgastat WHERE NAME = 'free memory'";
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@"+ip+":1521/XE");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@" + ip + ":1521/XE");
             OracleStatement stmt = (OracleStatement) cn.createStatement();
             OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
             while (rset.next()) {
                 setFreeSga(Double.parseDouble(rset.getString("MB")));
             }
-//            CallableStatement cst = cn.prepareCall("{call FREESGA (?,?)}");
-//            String id = "free memory";
-//            cst.setString(1, id);
-//            cst.registerOutParameter(2, java.sql.Types.FLOAT);//FREE SGA
-//            cst.execute();
-//            Float freeSGA = cst.getFloat(2);
-//            System.out.println("FREE SGA: " + freeSGA);
-//            setFreeSga(freeSGA);
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
         } finally {
@@ -105,25 +100,15 @@ public class controlSGA {
 
     public void consultSharedPool(String ip) {
         Connection cn = null;
-        String id = "shared pool";
-        String sentencia ="SELECT SUM(BYTES)/1024/1024 as MB FROM v$sgastat WHERE POOL = 'shared pool'";
+        String sentencia = "SELECT SUM(BYTES)/1024/1024 as MB FROM v$sgastat WHERE POOL = 'shared pool'";
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@"+ip+":1521/XE");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@" + ip + ":1521/XE");
             OracleStatement stmt = (OracleStatement) cn.createStatement();
             OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
-            System.out.println("shared");
             while (rset.next()) {
                 setSharedPool(Double.parseDouble(rset.getString("MB")));
             }
-//            CallableStatement cst = cn.prepareCall("{call SHAREDPOOL (?,?)}");
-//            String id = "shared pool";
-//            cst.setString(1, id);
-//            cst.registerOutParameter(2, java.sql.Types.FLOAT);//shared pool
-//            cst.execute();
-//            Float sPool = cst.getFloat(2);
-//            System.out.println("Shared Pool: " + sPool);
-//            setSharedPool(sPool);
 
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
@@ -138,25 +123,15 @@ public class controlSGA {
 
     public void usedSGA(String ip) {
         Connection cn = null;
-        String id = "free memory";
-        String sentencia ="SELECT SUM(BYTES)/1024/1024 as MB FROM v$sgastat WHERE NAME != 'free memory'";
+        String sentencia = "SELECT SUM(BYTES)/1024/1024 as MB FROM v$sgastat WHERE NAME != 'free memory'";
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@"+ip+":1521/XE");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@" + ip + ":1521/XE");
             OracleStatement stmt = (OracleStatement) cn.createStatement();
             OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
-            System.out.println("usada");
             while (rset.next()) {
-                 setUsedSga(Double.parseDouble(rset.getString("MB")));
+                setUsedSga(Double.parseDouble(rset.getString("MB")));
             }
-//            CallableStatement cst = cn.prepareCall("{call USEDSGA (?,?)}");
-//            String id = "free memory";
-//            cst.setString(1, id);
-//            cst.registerOutParameter(2, java.sql.Types.FLOAT);//FREE SGA
-//            cst.execute();
-//            Float usedSGA = cst.getFloat(2);
-//            System.out.println("USED SGA: " + usedSGA);
-//            setUsedSga(usedSGA);
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
         } finally {
@@ -167,5 +142,40 @@ public class controlSGA {
             }
         }
     }
-    
+
+    public ArrayList<Alerta> usuariosSentencias(String ip) {
+        Connection cn = null;
+        ArrayList<Alerta> alertas = new ArrayList<>();
+        Alerta a = null;
+        
+        String sentencia = "select distinct vs.sql_text,  \n"
+                + "to_char(to_date(vs.first_load_time,\n"
+                + "'YYYY-MM-DD/HH24:MI:SS'),'MM/DD  HH24:MI:SS') FECHA, \n"
+                + "au.USERNAME USUARIO  \n"
+                + "from v$sqlarea vs , all_users au   \n"
+                + "where (parsing_user_id != 0)  AND (au.user_id(+)=vs.parsing_user_id)and (executions >= 1) order by FECHA";
+        try {
+            DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+            cn = DriverManager.getConnection("jdbc:oracle:thin:sys as sysdba/root@" + ip + ":1521/XE");
+            OracleStatement stmt = (OracleStatement) cn.createStatement();
+            OracleResultSet rset = (OracleResultSet) stmt.executeQuery(sentencia);
+            while (rset.next()) {
+                a = new Alerta();
+                a.setSentencia(rset.getString("SQL_TEXT"));
+                a.setFecha(rset.getString("FECHA"));
+                a.setUsuario(rset.getString("USUARIO"));
+                alertas.add(a);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+            }
+        }
+        return alertas;
+    }
+
 }

@@ -31,5 +31,8 @@
             <button id="btn1" type="button" class="btn btn-default"><a href="MonitorSGA.jsp">Monitor SGA</a></button>
             <button id="btn2" type="button" class="btn btn-default"><a href="principal.jsp">Monitor TableSpaces</a></button>
         </div>
+        <div>
+            <button id="btn3" type="button" class="btn btn-default"><a href="monitorLogs.jsp">Monitor LOGS</a></button>
+        </div>
     </body>
 </html>
