@@ -23,6 +23,7 @@ $(document).ready(function () {
                 sgaFree = data.m.freeSga;
                 sPool = data.m.sharedPool;
                 sgaUsed = data.m.usedSga;
+                
                 porHWM = (HWMleido * 1000) / 100;
                 //alert(HWM);
                 if (sgaUsed > porHWM) {
@@ -35,7 +36,71 @@ $(document).ready(function () {
                 sPool = parseInt(sPool);
                 sgaUsed = parseInt(sgaUsed);
 
-                var dps = []; // dataPoints
+//                var dps = []; // dataPoints
+//                var instance = (new Date()).getTime();
+//                var chart = new CanvasJS.Chart("chartContainer", {
+//                    title: {
+//                        text: "Memoria SGA"
+//                    },
+//                    axisX: {
+//                        title: "Tiempo",
+//                        valueFormatString: "hh:mm:ss"
+//                    },
+//                    axisY: {
+//                        minimum: 10,
+//                        maximum: 100,
+//                        interval: 10,
+//                        title: "% MegaBytes",
+//                        stripLines: [
+//                            {
+//                                value: HWM,
+//                                thickness: 2,
+//                                color: "#ff0000",
+//                                label: "HWM"
+//                            }
+//                        ]
+//                    },
+//                    data: [{
+//                            type: "spline",
+//                            xValueType: "dateTime",
+//                            dataPoints: dps
+//                        }]
+//                });
+//                var updateInterval = 1000;
+//                var time = new Date();
+//                var updateChart = function (count) {
+//
+//                    count = count || 1;
+//
+//                    for (var j = 0; j < count; j++) {
+//                        time.setSeconds(time.getSeconds() + 1);
+//
+//                        dps.push({
+//                            x: time.getTime(),
+//                            y: (sgaUsed * 100) / 1000
+//                        });
+//                        if (dps.length > 10) {
+//                            dps.shift();
+//                        }
+//                    }
+//                    chart.render();
+//                };
+//                updateChart(10);
+//                setInterval(function () {
+//                    updateChart();
+//                }, updateInterval);
+
+            },
+            type: 'GET',
+            dataType: "json"
+        });
+    }, 1000);
+    
+    /*-----------------------GRAFICO--------------------------------------------*/
+
+    window.onload = function () {   
+        
+        var dps = []; // dataPoints
                 var instance = (new Date()).getTime();
                 var chart = new CanvasJS.Chart("chartContainer", {
                     title: {
@@ -52,7 +117,7 @@ $(document).ready(function () {
                         title: "% MegaBytes",
                         stripLines: [
                             {
-                                value: HWM,
+                                value: localStorage.getItem('HWMSGA'),
                                 thickness: 2,
                                 color: "#ff0000",
                                 label: "HWM"
@@ -88,12 +153,8 @@ $(document).ready(function () {
                 setInterval(function () {
                     updateChart();
                 }, updateInterval);
-
-            },
-            type: 'GET',
-            dataType: "json"
-        });
-    }, 1000);
+        
+    }
 
 });
 
@@ -125,6 +186,7 @@ function leerHWMSGA() {
         success: function (data) {
             HWMleido = data;
             $('#HWM').val(HWMleido);
+            localStorage.setItem('HWMSGA',HWMleido);
         },
         type: 'GET',
         dataType: "json"
