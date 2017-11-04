@@ -49,8 +49,9 @@ public class conexionBase extends HttpServlet {
 
                 case "buscarTableSpace":
                     Tablespace t = new Tablespace();
+                    c.setIpServidor(ipServidor = request.getParameter("IP"));
                     tbs = c.listaTableSpaces();
-                    ipServidor = request.getParameter("IP");
+                    
                     c.setIpServidor(ipServidor);
                     String tableSpace = request.getParameter("tableSpace");
                     for (int i = 0; i < tbs.size(); i++) {
