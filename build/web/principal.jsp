@@ -29,6 +29,8 @@
                 <a class="navbar-brand" href="Index.jsp">Monitor de Table Spaces</a>
             </nav>
         </header>
+        <div class="infoDB" id="info">
+        </div>
         <div id="top">
             <div class="grafico">
                 <div id="chartContainer" style="height: 300px; width:100%;">

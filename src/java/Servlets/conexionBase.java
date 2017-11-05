@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import domain.Alerta;
 import domain.Archivo;
 import domain.Dato;
+import domain.Log;
 import domain.Segmento;
 import domain.Servidor;
 import domain.Tablespace;
@@ -36,6 +37,7 @@ public class conexionBase extends HttpServlet {
             ArrayList<Segmento> aS = new ArrayList<>();
             ArrayList<Servidor> lServidores = new ArrayList<>();
             ArrayList<Alerta> lAlertas = new ArrayList<>();
+            ArrayList<Log> lLogs = new ArrayList<Log>();
             String accion = request.getParameter("accion");
             double diasTotal = 0.0;
             double diasHwm = 0.0;
@@ -51,7 +53,6 @@ public class conexionBase extends HttpServlet {
                     Tablespace t = new Tablespace();
                     c.setIpServidor(ipServidor = request.getParameter("IP"));
                     tbs = c.listaTableSpaces();
-                    
                     c.setIpServidor(ipServidor);
                     String tableSpace = request.getParameter("tableSpace");
                     for (int i = 0; i < tbs.size(); i++) {
@@ -105,7 +106,6 @@ public class conexionBase extends HttpServlet {
                     ipServidor = request.getParameter("IP");
                     lAlertas = cSGA.usuariosSentencias(ipServidor);
                     a.guardarAlerta(lAlertas, ipServidor);
-                   
                     break;
                 case "getHWMSGA":
                     hwmArchivo = a.leerHWMSGA();
@@ -117,8 +117,18 @@ public class conexionBase extends HttpServlet {
                     a.escribirHWMSGA(Integer.parseInt(hwmInputSGA));
                     json = new Gson().toJson(hwmInputSGA);
                     out.print(json);
-                    break;    
-                  
+                    break;
+                case "getInfoLogs":
+                    ipServidor = request.getParameter("IP");
+                    lLogs = c.setDireccion(c.getInfoLogs(ipServidor), ipServidor);
+                    json = new Gson().toJson(lLogs);
+                    out.print(json);
+                    break;  
+                case "getAvgSwitch":
+                    ipServidor = request.getParameter("IP");
+                    json = new Gson().toJson(c.getAvgSwitch(ipServidor));
+                    out.print(json);
+                    break;
                 default:
                     out.print("E~No se indico la acción que se desea realizare");
                     break;

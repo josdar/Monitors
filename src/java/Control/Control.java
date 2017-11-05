@@ -5,8 +5,10 @@
  */
 package Control;
 
+import DAO.DAOLogs;
 import DAO.controlDao;
 import domain.Dato;
+import domain.Log;
 import domain.Segmento;
 import domain.Tablespace;
 import java.util.ArrayList;
@@ -18,9 +20,11 @@ import java.util.ArrayList;
 public class Control {
 
     controlDao c;
+    DAOLogs dl;
 
     public Control() {
         c = new controlDao();
+        dl= new DAOLogs();
     }
 
     public ArrayList<Tablespace> listaTableSpaces() {
@@ -63,4 +67,15 @@ public class Control {
         c.setIpServidor(ipServidor);
     }
     
+    public ArrayList<Log> getInfoLogs(String ip){
+        return dl.getInfoLogs(ip);
+    }
+    
+    public ArrayList<Log> setDireccion(ArrayList<Log> lista,String ip){
+        return dl.setDireccion(lista, ip);
+    }
+    
+    public int getAvgSwitch(String ip){
+        return dl.getAvgSwitch(ip);
+    }
 }

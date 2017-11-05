@@ -1,9 +1,11 @@
 package Pruebas;
 
 import DAO.Conexion;
+import DAO.DAOLogs;
 import DAO.controlSGA;
 import domain.Alerta;
 import domain.Archivo;
+import domain.Log;
 import domain.Servidor;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,17 +19,22 @@ import oracle.jdbc.OracleStatement;
  * @author JoseDavid
  */
 public class Pruebas {
-
+    
     public static void main(String[] args) {
-        controlSGA c = new controlSGA();
-        ArrayList<Alerta> l = new ArrayList<>();
-        l = c.usuariosSentencias("localhost");
-        for (int i = 0; i < l.size(); i++) {
-            System.out.println(l.get(i));
-        }
+        DAOLogs c = new DAOLogs();
+//        ArrayList<Log> l = new ArrayList<>();
+//        ArrayList<Log> l2 = new ArrayList<>();
+//        l = c.getInfoLogs("localhost");
+//        for (int i = 0; i < l.size(); i++) {
+//            System.out.println(l.get(i));
+//        }
+//        
+//        
+//        l2 = c.setDireccion(l,"localhost");
+//        for (int i = 0; i < l2.size(); i++) {
+//            System.out.println(l2.get(i));
+//        }
+        System.out.println(c.getAvgSwitch("localhost"));
         
-        Archivo a = new Archivo();
-        a.guardarAlerta(l, "localhost");
-
     }
 }

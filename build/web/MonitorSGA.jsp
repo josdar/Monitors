@@ -28,6 +28,9 @@
                 <a class="navbar-brand" href="Index.jsp">Monitor de Memoria SGA</a>
             </nav>
         </header>
+        <div class="infoDB" id="info">
+           
+        </div>
         <div class="graficoSGA">
             <div id="chartContainer" style="height: 300px; width:100%;">
             </div>

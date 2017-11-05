@@ -1,6 +1,7 @@
 var hwmLeido;
 $(document).ready(function () {
     tablespaces();
+    $('#info').append("<h5 id='numLogs'>Base de datos: " + localStorage.getItem('Nombre') + "</h5>");
 });
 
 function tablespaces() {
@@ -84,7 +85,7 @@ function getTablespace(nombre) {
             accion: "buscarTableSpace",
             IP: localStorage.getItem('IP'),
             tableSpace: nombre
-            
+
         },
         error: function () { //si existe un error en la respuesta del ajax
         },

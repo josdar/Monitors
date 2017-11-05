@@ -28,11 +28,12 @@
             </nav>
         </header>
         <div class="botones">
-            <button id="btn1" type="button" class="btn btn-default"><a href="MonitorSGA.jsp">Monitor SGA</a></button>
-            <button id="btn2" type="button" class="btn btn-default"><a href="principal.jsp">Monitor TableSpaces</a></button>
+            <button id="btn1" type="button" class="btn btn-default">Monitor SGA</button>
+            <button id="btn2" type="button" class="btn btn-default">Monitor TableSpaces</button>
         </div>
         <div>
-            <button id="btn3" type="button" class="btn btn-default"><a href="monitorLogs.jsp">Monitor LOGS</a></button>
+            <button id="btn3" type="button" class="btn btn-default">Monitor LOGS</button>
         </div>
     </body>
+    <script src="javaScript/JSMenu.js" type="text/javascript"></script>
 </html>

@@ -40,6 +40,7 @@ function getServidores() {
 }
 
 function setIpLocalStorage() {
+    localStorage.setItem('Nombre',$("#bases option:selected").text());
     localStorage.setItem('IP',$("#bases option:selected").val());
     window.location.href = "Index.jsp";
 }
