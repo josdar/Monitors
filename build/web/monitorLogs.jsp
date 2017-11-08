@@ -25,7 +25,7 @@
                 <a class="navbar-brand" href="Index.jsp">Monitor Logs</a>
             </nav>
         </header>
-        <div class="infoDB" id="info">7
+        <div class="infoDB" id="info">
         </div>
         <div class="middle" id="centro">
         </div>

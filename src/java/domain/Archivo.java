@@ -178,8 +178,8 @@ public class Archivo {
      public void guardarServidor(Servidor s) {
         File f;
 
-        f = new File("ArchivosMonitores/Servidores.txt");
-
+        f = new File(".\\ArchivosMonitores\\Servidores.txt");
+        f.getParentFile().mkdirs();
 //Escritura
         try {
 
