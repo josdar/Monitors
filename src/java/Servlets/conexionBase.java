@@ -31,6 +31,7 @@ public class conexionBase extends HttpServlet {
             controlSGA cSGA = new controlSGA();
             Servidor s;
             String json;
+            String nombreServidor;
             String ipServidor;
             int hwmArchivo;
             ArrayList<Tablespace> tbs = new ArrayList<>();
@@ -127,6 +128,13 @@ public class conexionBase extends HttpServlet {
                 case "getAvgSwitch":
                     ipServidor = request.getParameter("IP");
                     json = new Gson().toJson(c.getAvgSwitch(ipServidor));
+                    out.print(json);
+                    break;
+                case "eliminarServidor":
+                    nombreServidor = request.getParameter("nombre");
+                    System.out.print(nombreServidor);
+                    a.eliminaServidor(nombreServidor);
+                    json = new Gson().toJson(nombreServidor);
                     out.print(json);
                     break;
                 default:
