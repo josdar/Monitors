@@ -4,6 +4,7 @@ var sgaUsed = 0.0;
 var HWM;
 var HWMleido;
 var porHWM;
+
 $(document).ready(function () {
     $('#info').append("<h5 id='numLogs'>Base de datos: " + localStorage.getItem('Nombre') + "</h5>");
     leerHWMSGA();
@@ -36,6 +37,8 @@ $(document).ready(function () {
             type: 'GET',
             dataType: "json"
         });
+
+
     }, 1000);
 
     /*-----------------------GRAFICO--------------------------------------------*/
@@ -52,9 +55,9 @@ $(document).ready(function () {
                 valueFormatString: "hh:mm:ss"
             },
             axisY: {
-                minimum: 10,
-                maximum: 100,
-                interval: 10,
+                minimum: 500,
+                maximum: 1000,
+                interval: 100,
                 title: "% MegaBytes",
                 stripLines: [
                     {
@@ -79,7 +82,7 @@ $(document).ready(function () {
                 time.setSeconds(time.getSeconds() + 1);
                 dps.push({
                     x: time.getTime(),
-                    y: (sgaUsed * 100) / 1000
+                    y: sgaUsed
                 });
                 if (dps.length > 10) {
                     dps.shift();
