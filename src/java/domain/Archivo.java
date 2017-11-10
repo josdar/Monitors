@@ -27,7 +27,7 @@ public class Archivo {
     public void escribir(ArrayList<Segmento> l, String ip) {
         File f;
 
-        f = new File("ArchivosMonitores/BD"+ip+".txt");
+        f = new File(".\\ArchivosMonitores/BD"+ip+".txt");
 
         //Escritura
         try {
@@ -65,7 +65,7 @@ public class Archivo {
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File("ArchivosMonitores/BD"+ip+".txt");
+            archivo = new File(".\\ArchivosMonitores/BD"+ip+".txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -109,7 +109,7 @@ public class Archivo {
     public void escribirHWM(int pHwm) {
         File f;
 
-        f = new File("ArchivosMonitores/Respaldo_HWM.txt");
+        f = new File(".\\ArchivosMonitores/Respaldo_HWM.txt");
 
         //Escritura
         try {
@@ -143,7 +143,7 @@ public class Archivo {
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File("ArchivosMonitores/Respaldo_HWM.txt");
+            archivo = new File(".\\ArchivosMonitores/Respaldo_HWM.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
@@ -197,10 +197,10 @@ public class Archivo {
             bw.close();
 
         } catch (IOException e) {
-        };
+        }
 
     }
-
+          
      public ArrayList<Servidor> leerServidores() {
 
         Servidor s;
@@ -237,10 +237,52 @@ public class Archivo {
 
     }
      
+     public void eliminaServidor(String nombre){
+         ArrayList<Servidor> lServidores = new ArrayList<>();
+         lServidores = this.leerServidores();
+         Servidor s = new Servidor();
+         
+         File fborrado = new File(".\\ArchivosMonitores\\Servidores.txt");
+         
+         fborrado.delete();
+         
+         File f;
+
+        f = new File(".\\ArchivosMonitores\\Servidores.txt");
+         
+         for(int i = 0; i<lServidores.size(); i++){
+             s = lServidores.get(i);
+             if(nombre.equals(s.nombre)){
+                 lServidores.remove(i);
+             }else{
+                 try {
+
+                    FileWriter w = new FileWriter(f,true);
+
+                    BufferedWriter bw = new BufferedWriter(w);
+
+                    PrintWriter wr = new PrintWriter(bw);
+                    wr.write(s.toString()+"\n");
+
+                    //ahora cerramos los flujos de canales de datos, al cerrarlos el archivo quedará guardado con información escrita
+                    //de no hacerlo no se escribirá nada en el archivo
+                    wr.close();
+
+                    bw.close();
+
+                } catch (IOException e) {
+                }
+             }
+         }
+         
+     
+        
+     }
+     
      public void guardarAlerta(ArrayList<Alerta> l, String ip) {
         File f;
 
-        f = new File("ArchivosMonitores/Alerta"+ip+".txt");
+        f = new File(".\\ArchivosMonitores/Alerta"+ip+".txt");
 
         //Escritura
         try {
@@ -268,7 +310,7 @@ public class Archivo {
      public void escribirHWMSGA(int pHwm) {
         File f;
 
-        f = new File("ArchivosMonitores/Respaldo_HWMSGA.txt");
+        f = new File(".\\ArchivosMonitores/Respaldo_HWMSGA.txt");
 
         //Escritura
         try {
@@ -302,7 +344,7 @@ public class Archivo {
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File("ArchivosMonitores/Respaldo_HWMSGA.txt");
+            archivo = new File(".\\ArchivosMonitores/Respaldo_HWMSGA.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
 
