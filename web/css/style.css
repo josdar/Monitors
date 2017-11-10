@@ -1,4 +1,4 @@
-.grafico{
+    .grafico{
 /*    margin-left: 20%;*/
     margin-right: 5%;
     padding: 3%;
@@ -130,6 +130,12 @@ td{
     color: blue;
 }
 
+.tablaSeleccionRegistro{
+    width: 30%;
+    margin-left: 8.5%;
+    margin-right: 10%;
+}
+
 .tablaSeleccion{
     width: 80%;
     margin-left: 10%;
@@ -205,6 +211,16 @@ td{
     border-radius: 10px;
 }
 
+.infoDBSGA{
+    border: solid grey 2px;
+    margin-left: 20%;
+    margin-right: 30%;
+    margin-bottom: 5%;
+    padding: 3%;
+    border-radius: 10px;
+    width: 100%;
+}
+
 .AvgSwitch{
     border: solid grey 2px;
     margin-top: 5%;
@@ -218,4 +234,54 @@ td{
     margin-left: 10%;
     margin-right: 10%;
     border: lightgray 2px solid;
+}
+
+.clasfColores{
+    border: solid grey 2px;
+    margin-left: 40%;
+    margin-right: 15%;
+    margin-bottom: 5%;
+    padding: 5%;
+    padding-right: 15%;
+    border-radius: 10px;
+}
+
+.topInfo{
+    height: 10%;
+}
+
+.inputHWM{
+    margin-left: -4.5%;
+}
+
+.titulo{
+    margin-left: 14%;
+}
+
+.seleccion{
+    margin-left: 16%;
+    width: 30%;
+}
+
+.botonesSelec{
+    margin-left: 28.5%;
+}
+
+.imagenServer{
+    width: 30%;
+    margin-left: 60%;
+    margin-top: -13%;
+}
+
+.botonBorrar{
+    cursor: pointer;
+}
+
+.botonEditar{
+    cursor: pointer;
+}
+
+.btnArchivo{
+    margin-bottom: 2%;
+    margin-left: 79.5%;
 }

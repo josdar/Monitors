@@ -11,6 +11,8 @@ import domain.Log;
 import domain.Segmento;
 import domain.Servidor;
 import domain.Tablespace;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -73,6 +75,29 @@ public class conexionBase extends HttpServlet {
                     out.print(json);
                     break;
 
+                    case "buscarTableSpaceCambio":
+                    Tablespace t2 = new Tablespace();
+                    c.setIpServidor(ipServidor = request.getParameter("IP"));
+                    tbs = c.listaTableSpaces();
+                    c.setIpServidor(ipServidor);
+                    String tableSpace2 = request.getParameter("tableSpace");
+                    for (int i = 0; i < tbs.size(); i++) {
+                        if (tbs.get(i).getNombre().equals(tableSpace2)) {
+                            t = tbs.get(i);
+
+//                            aS = c.getSizeofTableSpace(request.getParameter("tableSpace"));
+//                            a.escribir(aS,ipServidor);
+                            i = tbs.size();
+                        }
+                    }
+                    diasTotal = c.getPromedioConsumo(tableSpace2);
+                    t2.setDiasTotal(diasTotal);
+                    diasHwm = c.getPromedioConsumoHastaHWM(tableSpace2);
+                    t2.setDiasHwm(diasHwm);
+                    json = new Gson().toJson(t2);
+                    out.print(json);
+                    break;
+                    
                 case "getHWM":
                     hwmArchivo = a.leerHWM();
                     json = new Gson().toJson(hwmArchivo);
@@ -89,6 +114,9 @@ public class conexionBase extends HttpServlet {
                     s.setNombre(request.getParameter("nombre"));
                     s.setIp(request.getParameter("ip"));
                     a.guardarServidor(s);
+                    lServidores = a.leerServidores();
+                    json = new Gson().toJson(lServidores);
+                    out.print(json);
                     break;
                 case "getServidores":
                     lServidores = a.leerServidores();
@@ -124,7 +152,7 @@ public class conexionBase extends HttpServlet {
                     lLogs = c.setDireccion(c.getInfoLogs(ipServidor), ipServidor);
                     json = new Gson().toJson(lLogs);
                     out.print(json);
-                    break;  
+                    break;
                 case "getAvgSwitch":
                     ipServidor = request.getParameter("IP");
                     json = new Gson().toJson(c.getAvgSwitch(ipServidor));
@@ -136,6 +164,11 @@ public class conexionBase extends HttpServlet {
                     a.eliminaServidor(nombreServidor);
                     json = new Gson().toJson(nombreServidor);
                     out.print(json);
+                    break;
+                case "abrirArchivo":
+                    ipServidor = request.getParameter("IP");
+                    String file = ".\\ArchivosMonitores\\Alerta" + ipServidor + ".txt";
+                    Runtime.getRuntime().exec("cmd /c start " + file);
                     break;
                 default:
                     out.print("E~No se indico la acción que se desea realizare");

@@ -22,15 +22,30 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="Index.jsp">Monitor Logs</a>
+                <a class="navbar-brand" href="Index.jsp">Monitor de Logs</a>
             </nav>
         </header>
-        <div class="infoDB" id="info">
-        </div>
+        <table class="topInfo">
+            <tr>
+                <td>
+                    <div class="infoDBSGA" id="info">
+                    </div>  
+                </td>
+                <td>
+                    <div class="clasfColores">
+                        <label><img class="" src="https://i.imgur.com/x3MJUcm.png"/> CURRENT</label>
+                        <label><img class="" src="https://i.imgur.com/dNoroPy.png"/> ACTIVE</label>
+                        <label><img class="" src="https://i.imgur.com/2XqAb12.png"/> INACTIVE</label>
+                        <label><img class="" src="https://i.imgur.com/f8lmjjx.png"/> UNUSED</label>
+                    </div> 
+                </td>
+            </tr>
+        </table>
         <div class="middle" id="centro">
+
         </div>
         <div class="AvgSwitch" id="avgSwitch">
-            
+
         </div>
     </body>
 </html>

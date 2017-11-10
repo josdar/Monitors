@@ -29,28 +29,30 @@
                 <a class="navbar-brand" href="Index.jsp">Selección del Servidor</a>
             </nav>
         </header>
-        <h1>Sistema de Monitoreo de Servidores</h1>
+        <h1 class="titulo">Sistema de Monitoreo de Servidores</h1>
         <table class="tablaSeleccion">
             <tr>
                 <td id="columBD">
-                    <div class="form-group">
+                    <div class="form-group seleccion">
                         <label for="sel1">Seleccione el servidor:</label>
                         <select class="form-control" id="bases">
-                            
+
                         </select>
                     </div>   
                 </td>
             </tr>
             <tr>
-                 <td>
-                    <button type="button" onclick="setIpLocalStorage()" class="btn btn-primary monitorear">Monitorear</button>
-                </td>
-            </tr>
-            <tr>
-                 <td>
-                    <button type="button" onclick="registroServidor()" class="btn btn-primary monitorear">Registrar Servidor</button>
+                <td>
+                    <div class="btn-group botonesSelec">
+                        <button type="button" onclick="setIpLocalStorage()" class="btn btn-success monitorear">Monitorear</button>
+                        <button type="button" onclick="registroServidor()" class="btn btn-primary monitorear">Registrar Servidor</button>
+                    </div> 
+
                 </td>
             </tr>
         </table>
+        <div>
+            <img class="imagenServer" src="https://i.imgur.com/u6FkPNr.png"/>
+        </div>
     </body>
 </html>

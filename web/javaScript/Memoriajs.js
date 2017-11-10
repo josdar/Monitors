@@ -1,7 +1,7 @@
 var hwmLeido;
 $(document).ready(function () {
     tablespaces();
-    $('#info').append("<h5 id='numLogs'>Base de datos: " + localStorage.getItem('Nombre') + "</h5>");
+    $('#info').append("<h5 id='numLogs'>Servidor: " + localStorage.getItem('Nombre') + "</h5>");
 });
 
 function tablespaces() {
@@ -43,12 +43,14 @@ function saveHWM() {
         url: 'conexionBase',
         data: {
             accion: "saveHWM",
-            hwm: $('#hwmDato').val()
+            hwm: $('#hwmDato').val(),
+            tableSpace:$('#nombreDato').text()
         },
         error: function () { //si existe un error en la respuesta del ajax
         },
         success: function (data) {
             leerHWM();
+            getTablespace($('#nombreDato').text());
         },
         type: 'GET',
         dataType: "json"
@@ -57,7 +59,6 @@ function saveHWM() {
 
 function dibujarTabla(dataJson) {
     $("#tablaTbs").html("");
-
     var head = $("<thead />");
     var row = $("<tr />");
     head.append(row);
@@ -78,7 +79,6 @@ function dibujarFila(rowData) {
 }
 
 function getTablespace(nombre) {
-
     $.ajax({
         url: 'conexionBase',
         data: {
@@ -95,8 +95,13 @@ function getTablespace(nombre) {
             var memT = data.memTotal;
             var hwm = memT * hwmLeido / 100;
             var dps = [{label: data.nombre, y: data.memUsada}];
-
             var dps2 = [{label: data.nombre, y: data.memLibre}];
+            var diasHWMN;
+            if(Math.floor(data.diasHwm * 10) / 10 < 0){
+                diasHWMN = 0;
+            }else{
+                diasHWMN= Math.floor(data.diasHwm * 10) / 10;
+            }
             CanvasJS.addColorSet("coloresBarras",
                     [//colorSet Array
 
@@ -107,7 +112,7 @@ function getTablespace(nombre) {
             var chart = new CanvasJS.Chart("chartContainer", {
                 colorSet: "coloresBarras",
                 toolTip: {
-                    content: "Días para alcanzar el HWM: " + Math.floor(data.diasHwm * 10) / 10 + " - " + "Días para alcanzar el total: " + Math.floor(data.diasTotal * 10) / 10 + ""
+                    content: "Días para alcanzar el HWM: " + diasHWMN + " - " + "Días para alcanzar el total: " + Math.floor(data.diasTotal * 10) / 10 + ""
                 },
                 title: {
                     text: "Gráfico del Table Space " + data.nombre,

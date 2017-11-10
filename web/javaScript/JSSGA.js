@@ -5,7 +5,7 @@ var HWM;
 var HWMleido;
 var porHWM;
 $(document).ready(function () {
-    $('#info').append("<h5 id='numLogs'>Base de datos: " + localStorage.getItem('Nombre') + "</h5>");
+    $('#info').append("<h5 id='numLogs'>Servidor: " + localStorage.getItem('Nombre') + "</h5>");
     leerHWMSGA();
     setInterval(function () {
         $.ajax({
@@ -42,6 +42,7 @@ $(document).ready(function () {
 
     window.onload = function () {
         var dps = []; // dataPoints
+        var puntosHWM = [];
         var instance = (new Date()).getTime();
         var chart = new CanvasJS.Chart("chartContainer", {
             title: {
@@ -56,14 +57,7 @@ $(document).ready(function () {
                 maximum: 100,
                 interval: 10,
                 title: "% MegaBytes",
-                stripLines: [
-                    {
-                        value: localStorage.getItem('HWMSGA'),
-                        thickness: 2,
-                        color: "#ff0000",
-                        label: "HWM"
-                    }
-                ]
+                stripLines: puntosHWM
             },
             data: [{
                     type: "spline",
@@ -77,6 +71,13 @@ $(document).ready(function () {
             count = count || 1;
             for (var j = 0; j < count; j++) {
                 time.setSeconds(time.getSeconds() + 1);
+                puntosHWM.pop();
+                puntosHWM.push({
+                    value: HWMleido,
+                    thickness: 2,
+                    color: "#ff0000",
+                    label: "HWM"
+                });
                 dps.push({
                     x: time.getTime(),
                     y: (sgaUsed * 100) / 1000
@@ -140,6 +141,23 @@ function saveHWMSGA() {
         },
         success: function (data) {
             leerHWMSGA();
+        },
+        type: 'GET',
+        dataType: "json"
+    });
+}
+
+function abrirArchivo() {
+    $.ajax({
+        url: 'conexionBase',
+        data: {
+            accion: "abrirArchivo",
+            IP: localStorage.getItem('IP')
+        },
+        error: function () { //si existe un error en la respuesta del ajax
+        },
+        success: function (data) {
+           
         },
         type: 'GET',
         dataType: "json"

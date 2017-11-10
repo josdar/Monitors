@@ -26,10 +26,10 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="SeleccionBD.jsp">Registro de Servidor</a>
+                <a class="navbar-brand" href="SeleccionBD.jsp">Registro de Nuevo Servidor</a>
             </nav>
         </header>
-        <table class="tablaSeleccion">
+        <table class="tablaSeleccionRegistro">
             <tr>
                 <td id="columReg">
                     <h4>Registro de nuevo servidor</h4>
@@ -46,26 +46,12 @@
                     <button type="button" onclick="guardado()" class="btn btn-primary registro">Registrar</button>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <button type="button" onclick="cancelaRegistro()" class="btn btn-primary registro">Volver</button>
-                </td>
-            </tr>
         </table>
         <br>
         <br>
         <div class="tablaRegistro">
             <table class="table" id="tablaReg">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th>Servidor</th>
-                        <th>Dirección IP</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody id="listado">
-                    
-                </tbody>
+                
             </table>
         </div>
         

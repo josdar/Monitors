@@ -59,7 +59,16 @@
                     <td class="filaT"><label id="totalDato"></label></td>
                     <td class="filaT"><label id="libreDato"></label></td>
                     <td class="filaT"><label id="usadaDato"></label></td>
-                    <td class="filaT"><input onchange="saveHWM()" type="text" class="form-control" id="hwmDato" value=""/></td>
+                    <td class="filaT">
+                        <div class="col-lg-10">
+                            <div class="input-group">
+                                <input type="text" id="hwmDato" class="form-control" placeholder="Cambiar % SGA">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" onclick="saveHWM()" type="button">Cambiar</button>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
                     <!--<td class="filaT"><label id="estadoDato"></label></td>-->
                 </tr>
             </table>

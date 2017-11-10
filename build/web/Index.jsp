@@ -24,15 +24,15 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="registroBD.jsp">Seleccione el Monitor</a>
+                <a class="navbar-brand" href="SeleccionBD.jsp">Seleccione el Monitor</a>
             </nav>
         </header>
         <div class="botones">
-            <button id="btn1" type="button" class="btn btn-default">Monitor SGA</button>
-            <button id="btn2" type="button" class="btn btn-default">Monitor TableSpaces</button>
+            <button id="btn1" type="button" class="btn btn-default">Monitor de SGA</button>
+            <button id="btn2" type="button" class="btn btn-default">Monitor de TableSpaces</button>
         </div>
         <div>
-            <button id="btn3" type="button" class="btn btn-default">Monitor LOGS</button>
+            <button id="btn3" type="button" class="btn btn-default">Monitor de LOGS</button>
         </div>
     </body>
     <script src="javaScript/JSMenu.js" type="text/javascript"></script>
