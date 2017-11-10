@@ -26,22 +26,14 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="Index.jsp">Registro Bases de Datos</a>
+                <a class="navbar-brand" href="SeleccionBD.jsp">Registro de Nuevo Servidor</a>
             </nav>
         </header>
-        <table class="tablaSeleccion">
+        <table class="tablaSeleccionRegistro">
             <tr>
-                <td id="columBD">
-                    <div class="form-group">
-                        <label for="sel1">Seleccione el servidor:</label>
-                        <select class="form-control" id="bases">
-                            
-                        </select>
-                    </div>   
-                </td>
                 <td id="columReg">
                     <h4>Registro de nuevo servidor</h4>
-                    <div class="form-group">
+                    <div id="formReg" class="form-group">
                         <label for="nombre">Nombre:</label>
                         <input id="nombre" type="text" class="form-control" id="nombre">
                         <label for="ip">Direccion IP:</label>
@@ -51,12 +43,17 @@
             </tr>
             <tr>
                 <td>
-                    <button type="button" onclick="setIpLocalStorage()" class="btn btn-primary monitorear">Monitorear</button>
-                </td>
-                <td>
-                    <button type="button" onclick="guardarServidor()" class="btn btn-primary registro">Registrar</button>
+                    <button type="button" onclick="guardado()" class="btn btn-primary registro">Registrar</button>
                 </td>
             </tr>
         </table>
+        <br>
+        <br>
+        <div class="tablaRegistro">
+            <table class="table" id="tablaReg">
+                
+            </table>
+        </div>
+        
     </body>
 </html>

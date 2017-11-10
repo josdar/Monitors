@@ -29,12 +29,13 @@
             </nav>
         </header>
         <div class="infoDB" id="info">
-           
+
         </div>
         <div class="graficoSGA">
             <div id="chartContainer" style="height: 300px; width:100%;">
             </div>
         </div>
+        <button onclick="abrirArchivo()" class="btn btn-primary btnArchivo">Abrir archivo de alertas</button>
         <div class="tablaSGA">
             <table class="table" id="tablaMem">
                 <thead class="thead-inverse">
@@ -58,16 +59,19 @@
                     </tr>
                     <tr>
                         <td>HWM</td>
-                        <td><label><input onchange="saveHWMSGA()" type="text" class="form-control" id="HWM" value=""/></label></td>
-                        
+                        <td>
+                            <div class="col-lg-5">
+                                <div class="input-group">
+                                    <input type="text" id="HWM" class="form-control inputHWM" placeholder="Cambiar % SGA">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary" onclick="saveHWMSGA()" type="button">Cambiar</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="peligro">
-            <!--<div class="alert alert-danger">
-                <strong>Success!</strong> You should <a href="alertas.jsp" class="alert-link">read this message</a>.
-            </div>-->
         </div>
         <footer class="piePaginaSGA">
 

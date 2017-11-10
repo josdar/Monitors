@@ -1,7 +1,6 @@
 $(document).ready(function () {
     getAvgSwitch();
     getLogs();
-    $('#info').append("<h5 id='numLogs'>Base de datos: " + localStorage.getItem('Nombre') + "</h5>");
 });
 
 function getLogs() {
@@ -33,7 +32,8 @@ function getAvgSwitch() {
 
         },
         success: function (data) {
-            $('#avgSwitch').append("<h5 id='AvgSwitch'>Average Switch: " + data +" horas"+"</h5>");
+            $('#avgSwitch').empty();
+            $('#avgSwitch').append("<h5 id='AvgSwitch'><b>Average Switch: " + data +" horas"+"</b></h5>");
         },
         type: 'GET',
         dataType: "json"
@@ -41,6 +41,9 @@ function getAvgSwitch() {
 }
 
 function dibujarLogs(data) {
+    $('#centro').empty();
+    $('#info').empty();
+    $('#info').append("<h5 id='numLogs'>Servidor: " + localStorage.getItem('Nombre') + "</h5>");
     $('#info').append("<h5 id='numLogs'>Número de Logs: " + data.length + "</h5>");
     for (var i = 0; i < data.length; i++) {
         switch (data[i].status) {
@@ -81,5 +84,6 @@ function dibujarLogs(data) {
 }
 
 setInterval(function(){
-    dibujarLogs(); // this will run after every 5 seconds
+    getLogs();
+    getAvgSwitch();
 },10000);
