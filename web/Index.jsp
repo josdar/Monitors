@@ -28,7 +28,7 @@
             </nav>
         </header>
         <div class="botones">
-            <button id="btn1" type="button" class="btn btn-default">Monitor de SGA</button>
+            <button id="btn1" type="button" class="btn btn-default">Monitor de memoria SGA</button>
             <button id="btn2" type="button" class="btn btn-default">Monitor de TableSpaces</button>
         </div>
         <div>

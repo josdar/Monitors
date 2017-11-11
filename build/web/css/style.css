@@ -1,9 +1,9 @@
-    .grafico{
-/*    margin-left: 20%;*/
+.grafico{
+    /*    margin-left: 20%;*/
     margin-right: 5%;
     padding: 3%;
-/*    border: lightgray 2px solid;*/
-/*    border-radius: 25px;*/
+    /*    border: lightgray 2px solid;*/
+    /*    border-radius: 25px;*/
     float: right;
     width: 80%;
 }
@@ -13,7 +13,7 @@
 }
 
 .tabla{
-/*    margin-left: 10%;*/
+    /*    margin-left: 10%;*/
     float: left;
     width: 10%;
     margin-left: 2%;
@@ -66,8 +66,8 @@ td{
 
 .tablaDetalles{
     margin-left: 30%;
-/*    margin-right: 40%;*/
-/*    border: lightgray 2px solid;*/
+    /*    margin-right: 40%;*/
+    /*    border: lightgray 2px solid;*/
 }
 
 .graficoSGA{
@@ -106,28 +106,58 @@ td{
 }
 
 #btn1{
+    border: solid #D3D3D3 2px;
     width: 30%;
     height: 200px;
     margin-right: 5%;
     margin-left: 17%;
     cursor: pointer;
-    color: blue;
+    color: black;
+    background: url("https://i.imgur.com/0RU2ugV.png") transparent;
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 7%;
+}
+
+#btn1:hover{
+    color: #D3D3D3;
 }
 
 #btn2{
+    border: solid #D3D3D3 2px;
     width: 30%;
     height: 200px;
     cursor: pointer;
-    color: blue;
+    color: black;
+    background: url("https://i.imgur.com/050eWS7.jpg") transparent;
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 7%;
+}
+
+#btn2:hover{
+    color: #D3D3D3;
 }
 
 #btn3{
+    border: solid #D3D3D3 2px;
     width: 30%;
     height: 200px;
     margin-left: 35%;
     margin-top: 10%;
     cursor: pointer;
-    color: blue;
+    color: black;
+    background: url("https://i.imgur.com/gd1aZmu.png") transparent;
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 7%;
+}
+
+#btn3:hover{
+    color: #D3D3D3;
 }
 
 .tablaSeleccionRegistro{
