@@ -22,7 +22,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="Index.jsp">Monitor de Logs</a>
+                <a class="navbar-brand" href="menuMonitores.jsp">Monitor de Logs</a>
             </nav>
         </header>
         <table class="topInfo">

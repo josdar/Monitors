@@ -26,7 +26,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="Index.jsp">Selección del Servidor</a>
+                <a class="navbar-brand" href="#">Selección del Servidor</a>
             </nav>
         </header>
         <h1 class="titulo">Sistema de Monitoreo de Servidores</h1>

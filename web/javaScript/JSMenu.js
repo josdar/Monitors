@@ -5,7 +5,7 @@ $("#btn1").click(function () {
 });
 
 $("#btn2").click(function () {
-    window.location = "principal.jsp";
+    window.location = "monitorTablesPaces.jsp";
     return false;
 });
 
