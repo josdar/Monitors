@@ -56,9 +56,9 @@ $(document).ready(function () {
                 valueFormatString: "hh:mm:ss"
             },
             axisY: {
-                minimum: 500,
-                maximum: 1000,
-                interval: 100,
+                minimum: 10,
+                maximum: 100,
+                interval: 10,
                 title: "% MegaBytes",
                 stripLines: puntosHWM
             },
@@ -83,7 +83,7 @@ $(document).ready(function () {
                 });
                 dps.push({
                     x: time.getTime(),
-                    y: sgaUsed
+                    y: (sgaUsed * 100)/1000
                 });
                 if (dps.length > 10) {
                     dps.shift();

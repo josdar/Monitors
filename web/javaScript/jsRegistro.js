@@ -9,13 +9,14 @@ function guardado() {
             ip: $('#ip').val()
         },
         error: function () {
-
+            swal('Error','Servidor no Guardado','error');
         },
         success: function (data) {
             getServidores();
             $('#nombre').val("");
             $('#ip').val("");
             $('#nombre').prop('disabled', false);
+            swal('Listo','Servidor Guardado','success');
         },
         type: 'GET',
         dataType: "json"
@@ -42,15 +43,6 @@ function getServidores() {
 }
 
 function dibujarTablaServidores(data) {
-//    var listado=document.getElementById("listado");
-//    listado.innerHTML="";
-//    for(var i = 0; i < data.length; i++){
-//        var row = $("<tr />");
-//        $("#listado").append(row);
-//        row.append('<td>'+data[i].nombre+'</td><td>'+data[i].ip+'</td>');
-//        row.append('<td><img src="images/edit.png" onclick="actualizarDatos(\''+data[i].nombre+'\',\''+data[i].ip+'\')"></td>');
-//        row.append('<td><img src="images/delete.png" onclick="eliminaServidor(\''+data[i].nombre+'\')"></td>');
-//    }
     $("#tablaReg").html("");
     var head = $("<thead />");
     var row = $("<tr />");
@@ -61,7 +53,6 @@ function dibujarTablaServidores(data) {
     row.append($("<th><label class='title'>Actualizar</label></th>"));
     row.append($("<th><label class='title'>Eliminar</label></th>"));
 
-    //carga la tabla con el json devuelto
     for (var i = 0; i < data.length; i++) {
         dibujarFila(data[i]);
     }
